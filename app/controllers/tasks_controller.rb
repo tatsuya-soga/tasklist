@@ -4,7 +4,7 @@ class TasksController < ApplicationController
   before_action :correct_user, only: [:destroy]
   
   def index
-      @tasks = Task.all
+    @tasks = Task.all
     if logged_in?
       @task = current_user.tasks.build  # form_with 用
       @tasks = current_user.tasks.order(id: :desc).page(params[:page])
@@ -19,8 +19,7 @@ class TasksController < ApplicationController
   end
 
   def create
-  # @task = Task.new(task_params)
-  @task = current_user.tasks.build(task_params)
+    @task = current_user.tasks.build(task_params)
     if @task.save
       flash[:success] = 'Task が正常に投稿されました'
       redirect_to root_url
@@ -47,7 +46,7 @@ class TasksController < ApplicationController
     @task.destroy
 
     flash[:success] = 'Task は正常に削除されました'
-     redirect_to tasks_url
+    redirect_to tasks_url
     #redirect_back(fallback_location: root_path)
   end
   
@@ -67,5 +66,4 @@ class TasksController < ApplicationController
       redirect_to root_url
     end
   end
-  
 end
